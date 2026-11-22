@@ -8,7 +8,7 @@
 > **Repository**: [https://github.com/amith-exe/OsdagBridge](https://github.com/amith-exe/OsdagBridge)  
 > **Upstream Repository**: [https://github.com/Nidhikhare12/OsdagBridge](https://github.com/Nidhikhare12/OsdagBridge) (`dev` branch)  
 
-This repository contains the complete, production-ready implementation of the screening assessment tasks developed by **Amith Biju** for the **OsdagBridge Winter Internship (FOSSEE / IIT Bombay)**. All three core development and research tasks have been implemented according to PEP 8 standards, modular MVC architecture, defensive error handling, and accompanied by comprehensive automated unit tests (`pytest`).
+This repository contains the implementation of the screening assessment tasks developed by **Amith Biju** for the **OsdagBridge Winter Internship (FOSSEE / IIT Bombay)**. All three core development tasks have been implemented according to PEP 8 standards, modular MVC architecture, clean error handling, and accompanied by comprehensive automated unit tests (`pytest`).
 
 ---
 
@@ -19,47 +19,6 @@ This repository contains the complete, production-ready implementation of the sc
 | **Task I** | **Interactive 2D CAD Parameter Editing** | **Completed & Merged** | [PR #1](https://github.com/amith-exe/OsdagBridge/pull/1) | `InteractiveCADManager`, `CrossSectionCADWidget`, in-place overlay `QLineEdit`, layout re-solver |
 | **Task II** | **Additional Inputs Dialog: Validation & State Management** | **Completed & Merged** | [PR #2](https://github.com/amith-exe/OsdagBridge/pull/2) | Pre-save schema validator, reactive dirty-state tracking (`is_modified`), close interceptor |
 | **Task III** | **Result Plotting for Transverse Members (End Diaphragm & Cross Bracing)** | **Completed & Merged** | [PR #3](https://github.com/amith-exe/OsdagBridge/pull/3) | `results_data.py` classifier, spatial $Z$-sorting, 3D response curtains, auto-isometric pivot, 11 unit tests |
-
----
-
-## End-to-End System Architecture
-
-OsdagBridge employs a Model-View-Controller (MVC) architecture to ensure strict separation of concerns between graphical presentation, form inputs, validation rules, and structural finite element analysis.
-
-```mermaid
-flowchart TD
-    subgraph UI_Layer["Presentation Layer (Desktop UI)"]
-        DualCAD["2D CAD Dual View\n(CrossSectionCADWidget / TopViewCADWidget)"]
-        InDock["Input Dock\n(Form Controls & Additional Inputs)"]
-        OutDock["Output Dock\n(Analysis & Design Results)"]
-        Plot3D["3D Plots Canvas\n(MplPlotWidget - Matplotlib)"]
-    end
-
-    subgraph Controller_Layer["Controller & Coordination Layer"]
-        WinCtrl["MainWindow / TemplatePage Controller"]
-        CADMgr["InteractiveCADManager\n(Hit-Testing & In-Place QLineEdit)"]
-        Validator["BridgeInputValidator\n(IRC Code Checks & Bounds)"]
-    end
-
-    subgraph Core_Layer["Shared Core & Solver Layer"]
-        InputModel["Bridge Input Dict & Layout Solver\n(Geometry Balancing & Sizing)"]
-        SolverAdapter["FEA Multi-Solver Adapter\n(ospgrillage / OpenSeesPy / Native)"]
-        ResultsData["results_data.py\n(FEA Element Classification)"]
-        PlotGen["plot_generator.py\n(3D Curtain & Polyline Engine)"]
-    end
-
-    DualCAD <-->|"User clicks & canvas redraw"| CADMgr
-    CADMgr -->|"parameter_edited(key, value)"| WinCtrl
-    WinCtrl <-->|"Pre-save & bounds check"| Validator
-    WinCtrl -->|"Update fields"| InDock
-    WinCtrl -->|"Update parameters"| InputModel
-    InputModel -->|"Re-solved geometry"| DualCAD
-    InputModel -->|"Grillage mesh"| SolverAdapter
-    SolverAdapter -->|"Internal forces & displacements"| ResultsData
-    ResultsData -->|"Classified lines"| PlotGen
-    PlotGen -->|"Rendered 3D figures"| Plot3D
-    OutDock -->|"Member selection signal"| Plot3D
-```
 
 ---
 
