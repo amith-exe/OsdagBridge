@@ -1,6 +1,6 @@
-# OsdagBridge — Screening Assessment Tasks
+# OsdagBridge — Internship Screening Tasks
 
-> **FOSSEE Winter Internship / Fellowship Screening Assessment**  
+> **FOSSEE Winter Internship Screening Tasks**  
 > **Host Organization**: FOSSEE, Indian Institute of Technology Bombay (IIT Bombay)  
 > **Candidate**: **Amith Biju**  
 > **Email**: [amith1biju@gmail.com](mailto:amith1biju@gmail.com)  
@@ -8,11 +8,11 @@
 > **Repository**: [https://github.com/amith-exe/OsdagBridge](https://github.com/amith-exe/OsdagBridge)  
 > **Upstream Repository**: [https://github.com/Nidhikhare12/OsdagBridge](https://github.com/Nidhikhare12/OsdagBridge) (`dev` branch)  
 
-This repository contains the implementation of the screening assessment tasks developed by **Amith Biju** for the **OsdagBridge Winter Internship (FOSSEE / IIT Bombay)**. All three core development tasks have been implemented according to PEP 8 standards, modular MVC architecture, clean error handling, and accompanied by comprehensive automated unit tests (`pytest`).
+This repository contains the implementation of the internship screening tasks completed by **Amith Biju** for the **FOSSEE Winter Internship (IIT Bombay)** on the **OsdagBridge** project. All three core development tasks have been implemented according to PEP 8 standards, modular MVC architecture, clean error handling, and accompanied by comprehensive automated unit tests (`pytest`).
 
 ---
 
-## Summary of Assessment Deliverables
+## Summary of Internship Screening Tasks
 
 | Task | Title | Status | Pull Request | Key Architectural Components |
 | :--- | :--- | :---: | :---: | :--- |
